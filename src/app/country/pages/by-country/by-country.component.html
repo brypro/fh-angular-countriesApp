@@ -1,0 +1,51 @@
+<h2>Buscar por Nombre de País</h2>
+<hr>
+<div class="row">
+    <div class="col">
+        <form
+            (ngSubmit)="searchCountry(term)" 
+            autocomplete="off">
+            <input type="text"
+                name="term"
+                placeholder="buscar país..."
+                class="form-control"
+                [(ngModel)]="term" 
+                >
+        </form>
+    </div>
+</div>
+
+<hr>
+
+<div *ngIf="error" class="alert alert-danger">
+    <p>País no encontrado</p>
+</div>
+
+<div class="row" *ngIf="countries.length>0">
+    <div class="col">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Capital</th>
+                    <th>Región</th>
+                    <th>Bandera</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let country of countries">
+                    <td>{{country.name.common}}</td>
+                    <td>{{country.capital}}</td>
+                    <td>{{country.region}}</td>
+                    <td>
+                        <img class="small-flag" src="{{country.flags.svg}}" alt="{{country.flags.alt}}" >
+                    </td>
+                    <td>
+                        <a [routerLink]="['/country',country.ccn3]" >Ver más</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
