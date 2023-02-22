@@ -1,1 +1,23 @@
-<p>by-capital works!</p>
+<h2>Buscar por Nombre de Capital</h2>
+<hr>
+<div class="row">
+    <div class="col">
+        <app-search-country-input 
+            (onSearch)="searchCapital($event)"
+            (onDebounce)="suggestion($event)"
+            placeholder="Buscar por Capital..."
+            ></app-search-country-input>
+    </div>
+</div>
+
+<hr>
+
+<div *ngIf="error" class="alert alert-danger">
+    <p>Capital no encontrada</p>
+</div>
+
+<div class="row" *ngIf="countries.length>0">
+    <div class="col">
+        <app-country-table [countries]="countries"></app-country-table>
+    </div>
+</div>

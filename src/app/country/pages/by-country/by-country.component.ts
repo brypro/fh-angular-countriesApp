@@ -12,19 +12,25 @@ export class ByCountryComponent {
   error: boolean = false;
   countries: Country[] = [];
 
-  searchCountry(arg0: string) {
+  searchCountry(term: string) {
+    // make the search term the current term
+    this.term = term;
+    // search for the country
     this.countryService.searchCountry(this.term).subscribe({
+      // if the country is found, give the countries variable the value of the found countries
       next: (countries) => {
         this.error = false;
         this.countries = countries;
       },
+      // if the country is not found, return an error message
       error: (err) => {
         this.error = true;
         this.countries = [];
       },
     });
 
-    // .subscribe( // This is the same as the above code block but is deprecated
+    // This is the same as the above code block but is deprecated
+    // .subscribe(
     //   (countries) => {
     //     this.error = false;
     //     this.countries = countries;
@@ -34,6 +40,11 @@ export class ByCountryComponent {
     //     this.countries = [];
     //   }
     // );
+  }
+
+  suggestion($event: string) {
+    this.error = false;
+    // TODO: create suggestions
   }
 
   constructor(private countryService: CountryService) {}
