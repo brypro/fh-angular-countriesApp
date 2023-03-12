@@ -1,1 +1,55 @@
-<p>country-view works!</p>
+<div *ngIf="!country; else showCountry"
+    class="alert alert-info">
+    Espere por favor...
+</div>
+
+<ng-template #showCountry>
+    <div class="card">
+        
+            <img [src]="country.flags.png" alt="country.flags.alt" style="width: 100%">
+<div class="card-body">
+    <h2 class="card-title">{{this.country.name.official}}</h2>
+        <hr>
+
+        <div class="row">
+            <div class="col-6">
+                <p><strong>Capital: </strong>{{country.capital}}</p>
+                <p><strong>Alpha: </strong>{{country.cca3}}</p>
+                <p><strong>Region: </strong>{{country.region}}</p>
+                <p><strong>Subregion: </strong>{{country.subregion}}</p>
+                <p><strong>Population: </strong>{{country.population}}</p>
+            </div>
+            <div class="col-6">
+                <p><strong>Area: </strong>{{country.area}}</p>
+                <p><strong>Native Name: </strong>{{country.name.nativeName.spa?.common}}</p>
+                <p><strong>Alternative Spellings: </strong>{{country.altSpellings}}</p>
+                <!-- <p><strong>Currencies: </strong>{{country.currencies}}</p>
+                <p><strong>Languages: </strong>{{country.languages}}</p> -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <p><strong>Borders: </strong></p>
+                <ul>
+                    <li *ngFor="let border of country.borders">{{border}}</li>
+                </ul>
+            </div>
+            <div class="col-6">
+                <p><strong>Timezones: </strong></p>
+                <ul>
+                    <li *ngFor="let timezone of country.timezones">{{timezone}}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <p><strong>Latitud: </strong>{{country.latlng[0]}}</p>
+                <p><strong>Longitud: </strong>{{country.latlng[1]}}</p>
+            </div>
+            <div class="col-6">
+                <img [src]="country.flag" alt="" style="width: 100%">
+            </div>
+        </div>
+    </div>
+</div>
+</ng-template>
