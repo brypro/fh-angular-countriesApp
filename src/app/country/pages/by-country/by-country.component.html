@@ -1,3 +1,4 @@
+<div class="animate__animated animate__fadeIn">
 <h2>Buscar por Nombre de País</h2>
 <hr>
 <div class="row">
@@ -9,7 +10,22 @@
             ></app-search-country-input>
     </div>
 </div>
-
+<ul class="list-group" *ngIf="showSuggestions">
+    <li class="list-group-item list-group-item-action"
+        *ngFor="let suggested of suggestedCountries">
+        <a class="nav-link"
+            [routerLink]="['/country', suggested.ccn3]">
+        {{suggested.name.official}}
+        </a>
+    </li>
+    <li class="list-group-item list-group-item-action"
+    >
+        <a class="nav-link"
+        (click)="searchSuggested(term)">
+        Search "{{term}}"
+        </a>
+    </li>
+</ul>
 <hr>
 
 <div *ngIf="error" class="alert alert-danger">
@@ -20,4 +36,5 @@
     <div class="col">
         <app-country-table [countries]="countries"></app-country-table>
     </div>
+</div>
 </div>

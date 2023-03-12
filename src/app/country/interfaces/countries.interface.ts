@@ -114,3 +114,8 @@ export interface PostalCode {
   format: string;
   regex: string;
 }
+
+export interface CountryRegionCode {
+  code: string;
+  description: string;
+}

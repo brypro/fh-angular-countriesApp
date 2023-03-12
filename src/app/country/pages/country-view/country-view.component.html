@@ -1,13 +1,13 @@
 <div *ngIf="!country; else showCountry"
-    class="alert alert-info">
+    class="alert alert-info animate__animated animate__rubberBand">
     Espere por favor...
 </div>
 
-<ng-template #showCountry>
+<ng-template #showCountry class="animate__animated animate__fadeIn">
     <div class="card">
         
             <img [src]="country.flags.png" alt="country.flags.alt" style="width: 100%">
-<div class="card-body">
+<div class="card-body animate__animated animate__fadeIn">
     <h2 class="card-title">{{this.country.name.official}}</h2>
         <hr>
 
